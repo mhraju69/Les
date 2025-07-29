@@ -147,6 +147,8 @@ class SocialAuthCallbackView(APIView):
                 'password': make_password(None)
             }
         )
+        if created:
+            Participant.objects.create(user=user)
         
         refresh = RefreshToken.for_user(user)
         context = {

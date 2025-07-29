@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
+# from rest_framework_simplejwt.settings import api_settings
+
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -35,6 +37,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'dj_rest_auth',
     'dj_rest_auth.registration',
+
 ]
 
 
@@ -149,4 +152,10 @@ DATABASES = {
         'HOST': os.environ.get('POSTGRES_HOST'),    
         'PORT': '5432',
     }
+}
+
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30), 
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),    
 }

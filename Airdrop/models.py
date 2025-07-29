@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class Participant(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='participants', blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='participants', blank=True, null=True)
     wallet = models.CharField(max_length=255, unique=True, blank=True, null=True)
     twitter = models.CharField(max_length=255, blank=True, null=True)
     retweet = models.CharField(max_length=255, blank=True, null=True)

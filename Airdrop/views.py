@@ -59,6 +59,7 @@ class RegisterView(APIView):
 
 
 class ExportCSVView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request, *args, **kwargs):
         wallet = kwargs.get('wallet') 
         print(f"Received wallet: {wallet}")

@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-7zcd2$1mlzzoyl#2s1$=g=j$eb9n)$jbfa1wap2yt!*@(b(9k2'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -76,13 +76,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Less.wsgi.application'
 
 
-# Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
@@ -122,7 +122,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
-
+CORS_ALLOW_ALL_ORIGINS = True 
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -138,3 +138,15 @@ SOCIALACCOUNT_PROVIDERS = {
 GOOGLE_OAUTH_CALLBACK_URL = os.getenv("GOOGLE_OAUTH_CALLBACK_URL")
 GOOGLE_OAUTH_CLIENT_ID = os.getenv("GOOGLE_OAUTH_CLIENT_ID")
 GOOGLE_OAUTH_CLIENT_SECRET = os.getenv("GOOGLE_OAUTH_CLIENT_SECRET")
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_DB'),     
+        'USER': os.environ.get('POSTGRES_USER'),     
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'), 
+        'HOST': os.environ.get('POSTGRES_HOST'),    
+        'PORT': '5432',
+    }
+}
